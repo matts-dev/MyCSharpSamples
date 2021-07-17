@@ -1,0 +1,52 @@
+﻿
+CLR										//https://www.c-sharpcorner.com/UploadFile/f64127/What-is-cli-clr/
+	CLR - common language runtime.
+	CLR is an executing engine.
+	CLR is responsible for executing an executable
+	CLR is responsible for managing lifetime of an executable
+	CLR also known as "the runtime".
+	CLR and java's JVM are both prcoess virtual machines. comparisons: https://www.overops.com/blog/clr-vs-jvm-how-the-battle-between-net-and-java-extends-to-the-vm-level/
+	CLR manages code written in .net languages
+		C#, VB.NET, F#
+		code targeting CLR is "managed code"
+		code must folow common standard
+			code must emit and attach metadata with eveyr binary or PE(portable executable)
+			meta data inlcudes
+				types, objects, members, references
+				meta data used load types/allocate memory/managememory lifetime/resolve method invocations/ generative native code/ enforce security/ set runtimecontext boundaries
+	CLR functions
+		automatic memory mangement with garbage collection
+			relase unused objects, managing pool of threads, reserve locations
+		cross language interoperability
+		structured exception handling
+		code access security
+		thread excecution, thread pooling, and context
+		debugging
+		verification and compliance 
+	CTS = common type system, based on CLI
+		CLR uses CTS based on CLI
+	CLR implements the VES defined in the CLI standard
+
+CLI
+	CLI = Common Language infrastructure
+	CLI is a ***specification*** (by microsoft)
+		-describes executable code
+		-describes runtime environment
+		-allows high level programming languages on various machines using same code
+	CLI 4 components
+		CTS (common type system)
+			-defines basic data types
+			-every language designed to be used with .net should be able to "match"/use these datatypes 
+				-this makes various languages able to communicate with each other; ie cross language interoperability
+		CLS (common language specification)
+			-set of specifications that must be met by a language to be .net compliant 
+			-subset of CTS types 
+			-set of rules
+				-eg elimiation of pointers and elimination of multiple inheritance
+		Metadata
+			-gives information about classes, class members, defined in the assembly
+		VES (Virtual Execution System)
+			VES loads and runs programs using metadata
+	CLI set of specifications for a virtual operating system(the CLR)
+
+	
