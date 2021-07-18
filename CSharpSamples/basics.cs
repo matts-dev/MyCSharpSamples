@@ -1,5 +1,29 @@
 ﻿using System;
 
+namespace BasicSyntaxNamespace
+{
+	class ExampleClass
+	{
+		public double MyPublicDouble = 2.0;
+		protected double MyProtectedDouble = 3.0;
+		private double MyExplicitPrivateDouble = 4.0;
+		double MyPrivateDouble = 1.0;
+
+		void LogValues_Private()
+		{
+			Console.WriteLine("Logging the class variables.");
+			Console.WriteLine(MyPublicDouble);
+			Console.WriteLine(MyProtectedDouble);
+			Console.WriteLine(MyPrivateDouble);
+			Console.WriteLine(MyExplicitPrivateDouble);
+		}
+		public void LogValues_Public()
+		{
+			LogValues_Private();
+		}
+	}
+}
+
 namespace CSharpSamples
 {
 	class CSharpBasicsClass
@@ -7,7 +31,13 @@ namespace CSharpSamples
 		// the compiler complains if we try to make a free standing funtion, like we can in c++. :(  hence the static funcion.
 		static public void TheBasics()
 		{
-			//the data types
+			// the data types 
+			// These are called Value Types, derived System.ValueType, in c#. (except for string, which is a reference type)
+			// value types appear to be like stackvariables in c++, which are fast to use. 
+			// structs are value types (and have value semantics), while classes are reference types. https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct
+			// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types
+			// boxing/unboxing is wrapping/unwrapping a valuetype in a referencetype. MS usees "stack/heap" terminology in this page, so things appear to be like c++  https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/boxing-and-unboxing
+			// by default valuetypes are copied when passed to/returned from functions.
 #pragma warning disable CS0219 // Variable is assigned but its value is never used
 			byte MyByte = 1;
 			short MyShort = 2;
@@ -50,6 +80,15 @@ namespace CSharpSamples
 			string StringNumber = "123";
 			int IntFromParse = int.Parse(StringNumber); // IMO this seems cooler that calling convert
 			int IntFromConvert = Convert.ToInt32(StringNumber);
+
+			BasicSyntaxNamespace.ExampleClass Obj = new BasicSyntaxNamespace.ExampleClass();
+			Console.WriteLine("public variable is: {0}", Obj.MyPublicDouble);
+			//can't access these as as they're private/protected
+			//Console.WriteLine(Obj.MyProtectedDouble);
+			//Console.WriteLine(Obj.MyPrivateDouble);
+			//Console.WriteLine(Obj.MyExplicitPrivateDouble);
+			Obj.LogValues_Public();
+			//Obj.LogValues_Private(); //private method
 
 
 #pragma warning restore CS0219 // Variable is assigned but its value is never used
