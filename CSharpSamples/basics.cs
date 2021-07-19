@@ -93,7 +93,7 @@ namespace CSharpSamples
 			//c# has much of the c/c++ syntax.
 #pragma warning disable CS0168 // Variable is declared but never used
 			int ii, jj, kk;
-			float AnLValue = /*AnRValue*/54.f;
+			float AnLValue = /*AnRValue*/54.0f;
 #pragma warning restore CS0168 // Variable is declared but never used
 
 			Console.Write("Enter a number ");
