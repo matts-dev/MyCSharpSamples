@@ -63,9 +63,9 @@ namespace CSharpSamples
 			//c# formatted strings and ranges of float shown in 1
 			Console.WriteLine("floats go from {0} {1}", float.MinValue, float.MaxValue); //floats go from -3.402823E+38 3.402823E+38
 			Console.WriteLine("doubles go from {0} {1}", double.MinValue, double.MaxValue);//doubles go from -1.79769313486232E+308 1.79769313486232E+308
-			// note, decimal is not IEEE754 https://stackoverflow.com/questions/9079225/decimal-type-in-c-sharp-vs-ieee-754-standard
-			//		The decimal type is a 128 - bit data type suitable for financial and monetary calculations
-			//		
+																						   // note, decimal is not IEEE754 https://stackoverflow.com/questions/9079225/decimal-type-in-c-sharp-vs-ieee-754-standard
+																						   //		The decimal type is a 128 - bit data type suitable for financial and monetary calculations
+																						   //		
 			Console.WriteLine("decimal go from {0} {1}", decimal.MinValue, decimal.MaxValue);//decimal go from -79228162514264337593543950335 79228162514264337593543950335
 
 			const float MY_CONST_VALUE = 5.0f;
@@ -89,6 +89,17 @@ namespace CSharpSamples
 			//Console.WriteLine(Obj.MyExplicitPrivateDouble);
 			Obj.LogValues_Public();
 			//Obj.LogValues_Private(); //private method
+
+			//c# has much of the c/c++ syntax.
+#pragma warning disable CS0168 // Variable is declared but never used
+			int ii, jj, kk;
+			float AnLValue = /*AnRValue*/54.f;
+#pragma warning restore CS0168 // Variable is declared but never used
+
+			Console.Write("Enter a number ");
+			int UsersNumber = Convert.ToInt32(Console.ReadLine());
+			Console.WriteLine("You picked: {0}", UsersNumber);
+			
 
 
 #pragma warning restore CS0219 // Variable is assigned but its value is never used
