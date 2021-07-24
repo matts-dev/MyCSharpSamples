@@ -1,4 +1,5 @@
 ﻿using System;
+using BasicSyntaxNamespace;
 
 namespace BasicSyntaxNamespace
 {
@@ -22,7 +23,18 @@ namespace BasicSyntaxNamespace
 			LogValues_Private();
 		}
 	}
+
+	class BaseClass
+	{
+
+	}
+
+	class ChildClass : BaseClass
+	{
+		public void print() { Console.WriteLine("Child Print"); }
+	}
 }
+
 
 namespace CSharpSamples
 {
@@ -50,7 +62,7 @@ namespace CSharpSamples
 			char MyTwoByteChar = 'd';
 			bool MyBool = false;
 
-			Console.WriteLine("Chars are 2 bytes for unicode", sizeof(char)); //notice that sizeof works in c# too
+			Console.WriteLine("Chars are 2 bytes for unicode: {0}", sizeof(char)); //notice that sizeof works in c# too
 
 			string MyString = "this is a unicode string.";
 
@@ -63,9 +75,9 @@ namespace CSharpSamples
 			//c# formatted strings and ranges of float shown in 1
 			Console.WriteLine("floats go from {0} {1}", float.MinValue, float.MaxValue); //floats go from -3.402823E+38 3.402823E+38
 			Console.WriteLine("doubles go from {0} {1}", double.MinValue, double.MaxValue);//doubles go from -1.79769313486232E+308 1.79769313486232E+308
-			// note, decimal is not IEEE754 https://stackoverflow.com/questions/9079225/decimal-type-in-c-sharp-vs-ieee-754-standard
-			//		The decimal type is a 128 - bit data type suitable for financial and monetary calculations
-			//		
+																						   // note, decimal is not IEEE754 https://stackoverflow.com/questions/9079225/decimal-type-in-c-sharp-vs-ieee-754-standard
+																						   //		The decimal type is a 128 - bit data type suitable for financial and monetary calculations
+																						   //		
 			Console.WriteLine("decimal go from {0} {1}", decimal.MinValue, decimal.MaxValue);//decimal go from -79228162514264337593543950335 79228162514264337593543950335
 
 			const float MY_CONST_VALUE = 5.0f;
@@ -102,7 +114,7 @@ namespace CSharpSamples
 
 			//examples of syntax for literals
 			uint ui32_a = 100;      //read that this is an alias of UInt32 https://www.includehelp.com/dot-net/difference-between-uint-UInt16-UInt32-and-UInt64-in-c-sharp.aspx
-			UInt32 ui32_b = 100u; 
+			UInt32 ui32_b = 100u;
 			int int32_a = 0xdeed;
 			long int64_a = 0xDEEDL; //longs are 64bits, can end with L to make it a long
 			ulong uint64_a = 99ul; //can uppercase UL
@@ -122,6 +134,31 @@ namespace CSharpSamples
 			//MyConstInt = 3; //cannot do this, just like c/c++
 			const string MyConstString = "An immutable string!";
 			//MyConstString = "SomethingElse"; // error CS0131: The left-hand side of an assignment must be a variable, property or indexer
+
+			// is and as keywords allow for RTTI, `as` is like a dynamic cast; `is` is also like a dynamic ast, but the assignment reads odd.
+			BaseClass BaseRef = new ChildClass();
+			if (BaseRef is ChildClass ChildRef)
+			{
+				ChildRef.print();
+				Console.WriteLine("cast succeeded");
+
+				//can also just use is, or as keyword
+				ChildClass ChildRef2 = BaseRef as ChildClass;
+
+			}
+			else
+			{
+				Console.WriteLine("cast failed");
+			}
+
+			unsafe //requires compiling with unsafe
+			{
+				int* IntPtr = &MyInt;
+				Console.WriteLine("Printing from a dereferenced pointer: {0}", *IntPtr);
+			}
+
+			Console.WriteLine("typeof operator on ChildClass: {0}", typeof(ChildClass));
+			//Console.WriteLine("sizeof operator on ChildClass: {0}", sizeof(ChildClass)); compile error
 
 
 #pragma warning restore CS0219 // Variable is assigned but its value is never used
