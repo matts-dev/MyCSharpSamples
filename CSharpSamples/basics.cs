@@ -63,9 +63,9 @@ namespace CSharpSamples
 			//c# formatted strings and ranges of float shown in 1
 			Console.WriteLine("floats go from {0} {1}", float.MinValue, float.MaxValue); //floats go from -3.402823E+38 3.402823E+38
 			Console.WriteLine("doubles go from {0} {1}", double.MinValue, double.MaxValue);//doubles go from -1.79769313486232E+308 1.79769313486232E+308
-																						   // note, decimal is not IEEE754 https://stackoverflow.com/questions/9079225/decimal-type-in-c-sharp-vs-ieee-754-standard
-																						   //		The decimal type is a 128 - bit data type suitable for financial and monetary calculations
-																						   //		
+			// note, decimal is not IEEE754 https://stackoverflow.com/questions/9079225/decimal-type-in-c-sharp-vs-ieee-754-standard
+			//		The decimal type is a 128 - bit data type suitable for financial and monetary calculations
+			//		
 			Console.WriteLine("decimal go from {0} {1}", decimal.MinValue, decimal.MaxValue);//decimal go from -79228162514264337593543950335 79228162514264337593543950335
 
 			const float MY_CONST_VALUE = 5.0f;
@@ -99,7 +99,29 @@ namespace CSharpSamples
 			Console.Write("Enter a number ");
 			int UsersNumber = Convert.ToInt32(Console.ReadLine());
 			Console.WriteLine("You picked: {0}", UsersNumber);
-			
+
+			//examples of syntax for literals
+			uint ui32_a = 100;      //read that this is an alias of UInt32 https://www.includehelp.com/dot-net/difference-between-uint-UInt16-UInt32-and-UInt64-in-c-sharp.aspx
+			UInt32 ui32_b = 100u; 
+			int int32_a = 0xdeed;
+			long int64_a = 0xDEEDL; //longs are 64bits, can end with L to make it a long
+			ulong uint64_a = 99ul; //can uppercase UL
+			//Int32 int32_a = 100u; compile error :)
+
+			float a_float = 3.1415f;
+			float another_float = 31415E-4f;
+
+			char vertical_tab = '\v';
+			char horizontal_tab = '\t';
+
+			//string examplea = "string"" literals" " don't work like c" "in some ways";
+			string exampleb = @"test @ string literal";
+			string examplec = "plain old string";
+
+			const int MyConstInt = 66;
+			//MyConstInt = 3; //cannot do this, just like c/c++
+			const string MyConstString = "An immutable string!";
+			//MyConstString = "SomethingElse"; // error CS0131: The left-hand side of an assignment must be a variable, property or indexer
 
 
 #pragma warning restore CS0219 // Variable is assigned but its value is never used
